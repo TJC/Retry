@@ -1,0 +1,27 @@
+---
+abstract: ~
+author:
+  - 'Toby Corkindale, L<mailto:tjc@cpan.org>'
+build_requires:
+  ExtUtils::MakeMaker: 6.42
+  Test::More: 0.88
+configure_requires:
+  ExtUtils::MakeMaker: 6.42
+distribution_type: module
+generated_by: 'Module::Install version 0.95'
+license: artistic
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Retry
+no_index:
+  directory:
+    - inc
+    - t
+requires:
+  Moose: 1.01
+  perl: 5.8.1
+resources:
+  license: http://opensource.org/licenses/artistic-license.php
+  repository: http://github.com/TJC/Retry
+version: 0.10
