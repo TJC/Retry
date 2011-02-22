@@ -1,0 +1,8 @@
+Revision history for Retry
+
+0.11    Feb 22 13:14:24 2011
+    Add missing build dependency upon Test::Exception.
+
+0.10    May 17 12:55:22 2010
+    Initial version for CPAN.
+
