@@ -1,6 +1,6 @@
 package Retry;
 use Moose 1.01; # Probably fine with 0.92 or later, but untested.
-our $VERSION = '0.10';
+our $VERSION = '0.11';
 
 =head1 NAME
 
