@@ -45,5 +45,16 @@ use Retry;
     is($callbacks, 3, "Callback called three times.");
 }
 
+{
+    my $retry = Retry->new( retry_delay => 1 );
+    my $count = 3;
+    my $result = $retry->retry(
+        sub {
+            die('for dethklok') unless not $count--;
+            return "win!";
+        }
+    );
+    is($result, 'win!', "Return value from sub was passed through.");
+}
 
 done_testing();

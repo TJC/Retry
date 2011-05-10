@@ -1,6 +1,6 @@
 package Retry;
 use Moose 1.01; # Probably fine with 0.92 or later, but untested.
-our $VERSION = '0.11';
+our $VERSION = '0.12';
 
 =head1 NAME
 
@@ -88,7 +88,20 @@ has 'failure_callback' => (
 
 Its purpose is to execute the passed subroutine, over and over, until it
 succeeds, or the number of retries is exceeded. The delay between retries
-increases exponentially.
+increases exponentially. (Failure is indicated by the sub dying)
+
+If the subroutine succeeds, then its scalar return value will be returned by
+retry.
+
+For example, you could replace this:
+
+  my $val = unreliable_web_request();
+
+With this:
+
+   my $val = Retry->new->retry(
+       sub { unreliable_web_request() }
+   );
 
 =cut
 
@@ -99,8 +112,8 @@ sub retry {
     my $retries = $self->max_retry_attempts;
 
     while () {
-        eval { $sub->() };
-        return unless $@;
+        my $result = eval { $sub->() };
+        return $result unless $@;
         my $error = $@;
         $self->failure_callback->($error);
 
