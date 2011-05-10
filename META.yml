@@ -4,11 +4,12 @@ author:
   - 'Toby Corkindale, L<mailto:tjc@cpan.org>'
 build_requires:
   ExtUtils::MakeMaker: 6.42
+  Test::Exception: 0
   Test::More: 0.88
 configure_requires:
   ExtUtils::MakeMaker: 6.42
 distribution_type: module
-generated_by: 'Module::Install version 0.95'
+generated_by: 'Module::Install version 1.00'
 license: artistic
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -24,4 +25,4 @@ requires:
 resources:
   license: http://opensource.org/licenses/artistic-license.php
   repository: http://github.com/TJC/Retry
-version: 0.10
+version: 0.12
