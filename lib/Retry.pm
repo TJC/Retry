@@ -14,20 +14,27 @@ attempt fails.
 
 Example:
 
-  my $agent = Retry->new(
-    failure_callback => sub { warn "oh dear, error: " . $_[0]; },
-  );
-  eval {
-    $agent->retry(
-      sub {
-        this_code_might_die();
-      }
-    );
+  use Retry;
+  use Try::Tiny;
+  use LWP::UserAgent;
+
+  my $code_to_retry = sub {
+    my $r = LWP::UserAgent->new->get("http://example.com");
+    die $r->status_line unless $r->is_success;
+    return $r;
   };
-  if ($@) {
-    die "We totally failed!";
-    # Note that if we succeeded on a retry, this won't get called.
+
+  my $agent = Retry->new(
+    # This callback is optional:
+    failure_callback => sub { warn "Transient error: " . $_[0]; },
+  );
+
+  try {
+    $agent->retry($code_to_retry)
   }
+  catch {
+    warn "All attempts failed: $_";
+  };
 
 =head1 ATTRIBUTES
 
