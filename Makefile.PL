@@ -10,5 +10,6 @@ build_requires 'Test::More' => 0.88;
 build_requires 'Test::Exception';
 
 resources 'repository' => 'http://github.com/TJC/Retry';
+license 'artistic_2';
 
 WriteAll;
