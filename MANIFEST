@@ -8,9 +8,10 @@ inc/Module/Install/Win32.pm
 inc/Module/Install/WriteAll.pm
 lib/Retry.pm
 Makefile.PL
-MANIFEST			This list of files
+MANIFEST
 META.yml
 README
+Changes
 t/000_load_all.t
 t/perl-critic.t
 t/pod-coverage.t
