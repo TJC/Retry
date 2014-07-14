@@ -1,5 +1,9 @@
 package Retry;
-use Moose 1.01; # Probably fine with 0.92 or later, but untested.
+use strict;
+use warnings;
+use Moo;
+use MooX::Types::MooseLike::Base qw( Int CodeRef );
+
 our $VERSION = '0.12';
 
 =head1 NAME
@@ -52,7 +56,7 @@ It defaults to 8 seconds.
 
 has 'retry_delay' => (
     is => 'rw',
-    isa => 'Int',
+    isa => Int,
     default => 8
 );
 
@@ -66,7 +70,7 @@ It defaults to 5.
 
 has 'max_retry_attempts' => (
     is => 'rw',
-    isa => 'Int',
+    isa => Int,
     default => 5,
 );
 
@@ -85,7 +89,7 @@ For example:
 
 has 'failure_callback' => (
     is => 'rw',
-    isa => 'CodeRef',
+    isa => CodeRef,
     default => sub { sub {} }, # The way of the Moose is sometimes confusing.
 );
 
@@ -153,6 +157,4 @@ However L<Attempt> has a simpler syntax.
 
 =cut
 
-no Moose;
-__PACKAGE__->meta->make_immutable;
 1;
