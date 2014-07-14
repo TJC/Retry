@@ -8,20 +8,27 @@ SYNOPSIS
 
     Example:
 
-      my $agent = Retry->new(
-        failure_callback => sub { warn "oh dear, error: " . $_[0]; },
-      );
-      eval {
-        $agent->retry(
-          sub {
-            this_code_might_die();
-          }
-        );
+      use Retry;
+      use Try::Tiny;
+      use LWP::UserAgent;
+
+      my $code_to_retry = sub {
+        my $r = LWP::UserAgent->new->get("http://example.com");
+        die $r->status_line unless $r->is_success;
+        return $r;
       };
-      if ($@) {
-        die "We totally failed!";
-        # Note that if we succeeded on a retry, this won't get called.
+
+      my $agent = Retry->new(
+        # This callback is optional:
+        failure_callback => sub { warn "Transient error: " . $_[0]; },
+      );
+
+      try {
+        $agent->retry($code_to_retry)
       }
+      catch {
+        warn "All attempts failed: $_";
+      };
 
 ATTRIBUTES
   retry_delay
@@ -52,13 +59,27 @@ METHODS
   retry
     Its purpose is to execute the passed subroutine, over and over, until it
     succeeds, or the number of retries is exceeded. The delay between
-    retries increases exponentially.
+    retries increases exponentially. (Failure is indicated by the sub dying)
+
+    If the subroutine succeeds, then its scalar return value will be
+    returned by retry.
+
+    For example, you could replace this:
+
+      my $val = unreliable_web_request();
+
+    With this:
+
+       my $val = Retry->new->retry(
+           sub { unreliable_web_request() }
+       );
 
 AUTHOR
     Toby Corkindale, <mailto:tjc@cpan.org>
 
 LICENSE
-    This module is released under the Perl Artistic License.
+    This module is released under the Perl Artistic License 2.0:
+    <http://www.perlfoundation.org/artistic_license_2_0>
 
     It is based upon source code which is Copyright 2010 Strategic Data Pty
     Ltd, however it is used and released with permission.
