@@ -141,7 +141,7 @@ Toby Corkindale, L<mailto:tjc@cpan.org>
 
 =head1 LICENSE
 
-This module is released under the Perl Artistic License.
+This module is released under the Perl Artistic License 2.0: L<http://www.perlfoundation.org/artistic_license_2_0>
 
 It is based upon source code which is Copyright 2010 Strategic Data Pty Ltd,
 however it is used and released with permission.
