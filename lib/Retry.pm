@@ -4,7 +4,7 @@ use warnings;
 use Moo;
 use MooX::Types::MooseLike::Base qw( Int CodeRef );
 
-our $VERSION = '1.00';
+our $VERSION = '1.01';
 
 =head1 NAME
 

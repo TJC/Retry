@@ -1,5 +1,8 @@
 Revision history for Retry
 
+1.01    Jul 16 13:15:00 2014
+  * Add missing dependency
+
 1.00    Jul 14 18:30:00 2014
   * Change license to Artistic 2.0
   * Switch from Moose to Moo
