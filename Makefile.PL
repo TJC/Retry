@@ -6,6 +6,7 @@ perl_version '5.008001';
 all_from 'lib/Retry.pm';
 
 requires 'Moo';
+requires 'MooX::Types::MooseLike::Base';
 build_requires 'Test::More' => 0.88;
 build_requires 'Test::Exception';
 
