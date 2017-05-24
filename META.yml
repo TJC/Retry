@@ -27,4 +27,4 @@ requires:
 resources:
   license: http://opensource.org/licenses/artistic-license-2.0.php
   repository: http://github.com/TJC/Retry
-version: '1.02'
+version: '1.03'
