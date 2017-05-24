@@ -137,7 +137,7 @@ sub retry {
 
 =head1 AUTHOR
 
-Toby Corkindale, L<mailto:tjc@cpan.org>
+Toby Corkindale -- L<https://github.com/TJC/>
 
 =head1 LICENSE
 
