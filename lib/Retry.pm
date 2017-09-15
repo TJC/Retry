@@ -5,6 +5,7 @@ use Moo;
 use MooX::Types::MooseLike::Base qw( Int CodeRef );
 
 our $VERSION = '1.03';
+our $MAX_RETRY_ATTEMPTS = 5;
 
 =head1 NAME
 
@@ -64,14 +65,14 @@ has 'retry_delay' => (
 
 The maximum number of retries we should attempt before giving up completely.
 
-It defaults to 5.
+It defaults to C<$Retry::MAX_RETRY_ATTEMPTS>, which is initially set to 5.
 
 =cut
 
 has 'max_retry_attempts' => (
     is => 'rw',
     isa => Int,
-    default => 5,
+    default => sub { $MAX_RETRY_ATTEMPTS },
 );
 
 =head2 failure_callback

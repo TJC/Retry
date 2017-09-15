@@ -57,4 +57,15 @@ use Retry;
     is($result, 'win!', "Return value from sub was passed through.");
 }
 
+{
+    my $retry = Retry->new;
+    is(5, $retry->max_retry_attempts, "max_retry_attempts defaults to 5");
+}
+
+{
+    local $Retry::MAX_RETRY_ATTEMPTS = 2;
+    my $retry = Retry->new;
+    is(2, $retry->max_retry_attempts, "max_retry_attempts default can be changed");
+}
+
 done_testing();

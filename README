@@ -43,7 +43,9 @@ ATTRIBUTES
     The maximum number of retries we should attempt before giving up
     completely.
 
-    It defaults to 5.
+    It defaults to $Retry::MAX_RETRY_ATTEMPTS, whichis initially set to 5.
+    You may want to change this default to 0 to avoid retrying failures
+    during testing.
 
   failure_callback
     Optional. To be notified of *every* failure (even if we eventually
