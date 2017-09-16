@@ -6,6 +6,10 @@ use MooX::Types::MooseLike::Base qw( Int CodeRef );
 
 our $VERSION = '1.03';
 
+# code ref to sleep for passed number of seconds. called to delay between
+# retries.
+our $SLEEP_METHOD = \&CORE::sleep;
+
 =head1 NAME
 
 Retry
@@ -130,10 +134,23 @@ sub retry {
 
         die($error) unless $retries--;
 
-        sleep($delay);
+        $SLEEP_METHOD->($delay);
         $delay *= 2;
     }
 }
+
+=head1 TESTING
+
+When you are testing code that uses C<Retry>, you may want to disable the
+actual sleep between retries. You can do this by setting the package variable
+C<$Retry::SLEEP_METHOD> to a code ref to replace the default behavior of
+calling C<CORE::sleep>.
+
+For example:
+
+    use Retry;
+    local $Retry::SLEEP_METHOD = sub { };   # don't sleep at all
+    some_code_that_uses_retry();            # retries will happen immediately
 
 =head1 AUTHOR
 

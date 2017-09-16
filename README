@@ -74,6 +74,18 @@ METHODS
            sub { unreliable_web_request() }
        );
 
+TESTING
+    When you are testing code that uses "Retry", you may want to disable the
+    actual sleep between retries. You can do this by setting the package
+    variable $Retry::SLEEP_METHOD to a code ref to replace the default
+    behavior of calling "CORE::sleep".
+
+    For example:
+
+        use Retry;
+        local $Retry::SLEEP_METHOD = sub { };   # don't sleep at all
+        some_code_that_uses_retry();            # retries will happen immediately
+
 AUTHOR
     Toby Corkindale -- https://github.com/TJC/
 
