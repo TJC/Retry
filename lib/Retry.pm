@@ -8,7 +8,7 @@ our $VERSION = '1.03';
 
 =head1 NAME
 
-Retry
+Retry - module to retry some logic with fallbacks
 
 =head1 SYNOPSIS
 
