@@ -8,7 +8,7 @@ our $VERSION = '1.03';
 
 =head1 NAME
 
-Retry
+Retry - Try an action repeatedly with callback support
 
 =head1 SYNOPSIS
 
