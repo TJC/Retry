@@ -5,6 +5,7 @@ use lib "."; # See RT:121831 - this fixes install on Perl 5.26+
 use inc::Module::Install;
 
 name 'Retry';
+abstract 'Try an action repeatedly with callback support';
 perl_version '5.008001';
 all_from 'lib/Retry.pm';
 

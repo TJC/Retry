@@ -1,5 +1,5 @@
 ---
-abstract: ~
+abstract: 'Try an action repeatedly with callback support'
 author:
   - 'Toby Corkindale -- L<https://github.com/TJC/>'
 build_requires:
